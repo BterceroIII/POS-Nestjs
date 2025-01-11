@@ -31,7 +31,12 @@ export class CategoryService {
         if(products === "true"){
             options.relations = {
                 products: true
-            };
+            },
+            options.order = {
+                products: {
+                    id: 'DESC'
+                }
+            }
         }
 
         const category = await this.categoryRepository.findOne(options)

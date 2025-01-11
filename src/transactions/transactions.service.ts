@@ -65,7 +65,7 @@ export class TransactionsService {
         await transactionEntityManager.save(transactionContents);
       }
     });
-    return 'This action adds a new transaction';
+    return {message: "Transaction created"};
   }
 
   async findAll(transactionDate?: string) {
