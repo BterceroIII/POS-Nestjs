@@ -17,6 +17,6 @@ import { Category } from '../categories/entities/category.entity';
     }),
     TypeOrmModule.forFeature([Product, Category]),
   ],
-  providers: [SeederService]
+  providers: [SeederService],
 })
 export class SeederModule {}

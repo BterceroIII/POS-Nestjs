@@ -1,11 +1,11 @@
 export const categories = [
-    {
-      "name": "Sudaderas"
-    },
-    {    
-      "name": "Tenis"
-    },
-    {    
-      "name": "Lentes"
-    }
-  ]
+  {
+    name: 'Sudaderas',
+  },
+  {
+    name: 'Tenis',
+  },
+  {
+    name: 'Lentes',
+  },
+];
