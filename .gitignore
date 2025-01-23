@@ -4,6 +4,9 @@
 /build
 /public
 
+# Docker Compose
+docker-compose.yml
+
 # Logs
 logs
 *.log

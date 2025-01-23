@@ -7,12 +7,13 @@ export const typeOrmConfig = (
 ): TypeOrmModuleOptions => ({
   type: 'postgres',
   host: configService.get('DATABASE_HOST'),
-  port: configService.get('DATABASE_PORT'),
+  port: parseInt(configService.get('DATABASE_PORT'), 10), 
   username: configService.get('DATABASE_USER'),
   password: configService.get('DATABASE_PASS'),
   database: configService.get('DATABASE_NAME'),
-  ssl: true,
-  logging: false,
-  entities: [join(__dirname + '../../**/*.entity.{js,ts}')],
-  synchronize: true,
+  ssl: false,
+  logging: configService.get('NODE_ENV') !== 'production', 
+  entities: ['src/modules/**/*.entity.{ts,js}'],
+  autoLoadEntities: true,
+  synchronize: true, 
 });
