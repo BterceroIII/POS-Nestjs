@@ -103,6 +103,6 @@ export class ProductService {
   async remove(id: number) {
     const product = await this.findOne(id);
     await this.productRepository.delete(product);
-    return `remove a #${id} product`;
+    return {message:`remove a #${product.productName} product`};
   }
 }
