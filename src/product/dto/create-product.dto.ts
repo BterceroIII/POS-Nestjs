@@ -22,6 +22,9 @@ export class CreateProductDto {
   @IsNotEmpty({ message: 'the price is required' })
   price: number;
 
+  @IsNotEmpty({ message: 'the image url is required' })
+  image: string;
+
   @IsNotEmpty({ message: 'the quantity is required' })
   @IsNumber({ maxDecimalPlaces: 0 }, { message: 'quantity not valid' })
   inventory: number;
