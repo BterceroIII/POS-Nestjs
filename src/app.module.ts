@@ -12,6 +12,7 @@ import { Category } from './categories/entities/category.entity';
 import { Product } from './product/entities/product.entity';
 import { Transaction } from 'typeorm';
 import { Coupon } from './coupons/entities/coupon.entity';
+import { UploadImageModule } from './upload-image/upload-image.module';
 
 @Module({
   imports: [
@@ -26,9 +27,9 @@ import { Coupon } from './coupons/entities/coupon.entity';
     ProductoModule,
     TransactionsModule,
     CouponsModule,
+    UploadImageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
-  
 })
 export class AppModule {}

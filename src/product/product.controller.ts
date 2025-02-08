@@ -8,16 +8,24 @@ import {
   Delete,
   Query,
   Put,
+  UseInterceptors,
+  UploadedFile,
+  BadRequestException,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { GetProductDto } from './dto/get-product.dto';
 import { IdValidationPipe } from '../common/pipes/id-validation/id-validation.pipe';
+import { UploadImageService } from 'src/upload-image/upload-image.service';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('product')
 export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+  constructor(
+    private readonly productService: ProductService,
+    private readonly uploadImageService: UploadImageService,
+  ) {}
 
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
@@ -48,5 +56,14 @@ export class ProductController {
   @Delete(':id')
   remove(@Param('id', IdValidationPipe) id: string) {
     return this.productService.remove(+id);
+  }
+
+  @Post('upload-image')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadImage(@UploadedFile() file: Express.Multer.File) {
+    if (!file) {
+      throw new BadRequestException('No file uploaded');
+    }
+    return this.uploadImageService.uploadFile(file);
   }
 }
